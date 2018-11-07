@@ -1,0 +1,1 @@
+thrift.exe -gen csharp your_thrift_name.thrift
