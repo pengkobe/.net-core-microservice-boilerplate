@@ -214,3 +214,42 @@
 - 使用并行订阅服务
 - 批量反注册服务
 - 配置信息最好增量更新，否则会因为网络抖动引发网络风暴
+
+## 13 开源服务注册中心如何选型
+
+两种方案
+
+- 应用内注册于发现，基于 SDK
+- 应用外注册于发现(Consul:Registrator:Consul Tmplate)
+
+需要满足
+
+- 高可用性( 集群、多 IDC 部署)
+- 数据一致性。CAP 理论实际上是无法同时满足的
+  - CP 型注册中心，ZooKeeper 使用的方式，通过选用 leader 实现
+  - AP，Eureka 服务器单独保存服务注册地址，可能出现数据不一致
+
+## 13 开源 RPC 框架如何选型
+
+主要分为跨语言平台和特定语言平台两类
+
+- Spring Cloud 全家桶，自带熔断机制，日志分析等等
+- Dubbo（Netty 作为通讯框架，支持 RMI/Hession/HTTP/Thrift 等协议）
+- Motan（微博）
+- TARS（腾讯）
+- gRPC（效率高）
+- Thrift（支持语言的）
+
+## 13 如何搭建一个可靠的监控系统
+
+主流有两种方案
+
+- ELK（各类 beats - logstash - elasticsearch - kibana） 为代表的集中式日志解决方案
+- Graphite（Carbon:接收被监控节点连接 - Whisper:按时序采集 - Graphite-web），便于接入其它图形化监控系统
+- TICK，SQL 查询功能强大
+- Prometheus，适合云原生应用
+
+## 13 如何搭建一套服务追踪系统
+
+- OpenZipkin（Twitter），使用范围广、社区活跃
+- PinPoint（Naver），精确得多，还能监控到数据库链路，且不用改动业务代码，其为注入式
