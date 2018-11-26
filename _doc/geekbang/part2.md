@@ -42,6 +42,21 @@ DevOps 事实上就是开发与运维的结合，运维遇到的问题很多情�
 
 适用于成百上千机器的部署，开源的主要有：
 
-- Docker Swarm
+- Docker Swarm，门槛低
 - MesosPhere Mesos
-- 谷歌 Kubernetes
+- 谷歌 Kubernetes，门槛较高
+
+需要解决的问题
+
+- 主机过滤
+  - 存活过滤
+  - 硬件过滤，根据机器特性
+- 调度策略 spread/binpack
+
+### 服务编排
+
+- 服务依赖，参考 docker-compose
+- 服务发现
+  - 基于 Ngnix reload，可惜延迟较大
+  - 基于注册中心
+- 自动扩缩容
