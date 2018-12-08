@@ -1,4 +1,4 @@
-# .net-core-microservice-boilerplate
+# simple-microservice-boilerplate
 
 > boilerplate for building microservice based on .net core
 
