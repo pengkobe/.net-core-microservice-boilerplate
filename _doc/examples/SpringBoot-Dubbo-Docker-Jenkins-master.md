@@ -34,3 +34,31 @@ cat dubbo.properties
 docker pull docker.io/jenkins/jenkins
 docker run --name jenkins -p 10080:8080 docker.io/jenkins/jenkins
 ```
+
+## 代码修改
+
+需要对 redisService 做相关修改才能正常运行，原因是实现类(Impl) 中没有覆盖父类的方法
+
+## dubbo 配置
+
+### 服务发布
+
+以在 Gaoxi-User 的 application.properties 中配置服务提供者的信息为例
+
+```bash
+spring.dubbo.application.name=user-provider # 本服务的名称
+spring.dubbo.registry.address=zookeeper://192.168.99.101:2182 # ZooKeeper所在服务器的IP和端口号
+spring.dubbo.protocol.name=dubbo # RPC通信所采用的协议
+spring.dubbo.protocol.port=20883 # 本服务对外暴露的端口号
+spring.dubbo.scan=com.gaoxi.user.service # 服务实现类所在的路径
+```
+
+### 服务引用
+
+在 controller 中进行引用
+
+```bash
+spring.dubbo.application.name=controller-consumer # 本服务的名称
+spring.dubbo.registry.address=zookeeper://IP:2182 # zookeeper所在服务器的IP和端口号
+spring.dubbo.scan=com.gaoxi # 引用服务的路径
+```
