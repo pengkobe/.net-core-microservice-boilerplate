@@ -10,7 +10,7 @@
 ```bash
 # 拉取 tomcat
 docker pull chaimm/tomcat:1.1
-# 运行各个服务的 tomcat 容器，这里以 gaoxi-user 作为示例
+# 运行各个服务的 tomcat 容器，这里以 gaoxi-user 作为示例，，使用 http://192.168.99.101:8082 访问
 docker run --name gaoxi-user-1 -p 8082:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
 
 # 拉取 zookeeper
@@ -30,7 +30,7 @@ cd /zookeeper-3.4.10/tomcat/apache-tomcat-8.5.23/webapps/dubbo-admin-2.8.4/WEB-I
 cat dubbo.properties
 
 
-# 拉取 jenkins
+# 拉取 jenkins 并运行容器，使用 http://192.168.99.101:10080 访问
 docker pull docker.io/jenkins/jenkins
 docker run --name jenkins -p 10080:8080 docker.io/jenkins/jenkins
 ```
