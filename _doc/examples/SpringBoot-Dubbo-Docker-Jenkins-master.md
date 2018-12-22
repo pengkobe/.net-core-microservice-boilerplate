@@ -12,7 +12,12 @@
 docker pull chaimm/tomcat:1.1
 # 运行各个服务的 tomcat 容器，这里以 gaoxi-user 作为示例，，使用 http://192.168.99.101:8082 访问
 docker run --name gaoxi-user-1 -p 8082:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
-
+# 依次建立其它几个服务对应的容器
+docker run --name gaoxi-product-1 -p 8083:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
+docker run --name gaoxi-order-1 -p 8084:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
+docker run --name gaoxi-analysis-1 -p 8084:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
+docker run --name gaoxi-controller-1 -p 8085:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
+docker run --name gaoxi-redis-1 -p 8086:8080 -v /usr/web/gaoxi-log:/opt/tomcat/gaoxi-log chaimm/tomcat:1.1
 # 拉取 zookeeper
 docker pull chaimm/zookeeper-dubbo:1.0
 # 结果发现是无法通过 http://192.168.99.101:10000/dubbo-admin-2.8.4/ 访问的，原因是网络不通，网上说需要对 VirtualBox 进行相关设置才行，结果直接整坏了。
