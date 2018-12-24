@@ -70,6 +70,15 @@ clean install -Dmaven.test.skip=true -P test
 下载远程部署插件， 地址: https://wiki.jenkins.io/display/JENKINS/Deploy+Plugin , 其实就是 `Deploy to container`,我直接在插件市场通过搜索安装
 配置构建后执行的操作，上传 war 包到 tomcat，主要设置好 tomcat 登录的账号名/密码
 
+### 问题
+
+- 由于 jenkins 是安装在 windows 10 上的 linux 虚拟机上，那么也需要手动[下载Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) 在虚拟机上[安装 java](https://blog.csdn.net/skylibiao/article/details/81534583) 与 maven，在宿主机上安装的是无效的。然后我在虚拟机上安装好 java 其实是无法启动的，会提示无法启动 java 虚拟机。 后来想着自己为啥不直接安装 java 或者 maven 对应的 docker 镜像呢？ *https://hub.docker.com/_/maven*
+
+```bash
+docker run -it --rm --name my-maven-project -v /usr/maven:/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+```  
+
+但是这也发生了问题， jenkins 该如何配置呢？ 硬是不行，直接执行 shellscript 或者也是个好主意！
 
 ## dubbo 配置
 
