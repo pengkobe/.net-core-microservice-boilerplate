@@ -1,5 +1,7 @@
 # SpringBoot Dubbo Docker Jenkins
 
+地址： https://github.com/pengkobe/SpringBoot-Dubbo-Docker-Jenkins
+
 ## 开发工具
 
 - 基于 IntelliJ idea 进行开发，下载的是旗舰版试用版，试用期为 1 月。
@@ -27,7 +29,7 @@ docker run --name zookeeper-debug -p 2182:2181 -p 10000:8080 chaimm/zookeeper-du
 # 在 bash 中运行容器
 docker exec -i -t  zookeeper-debug /bin/bash
 # 启动 tomacat，发现 10000 端口可以正式访问，只是提示输入密码
-cd /zookeeper-3.4.10/tomcat/bin
+cd /zookeeper-3.4.10/tomcat/apache-tomcat-8.5.23/bin
 ./startup.sh
 # 进入 tomcat 配置目录
 cd /zookeeper-3.4.10/tomcat/apache-tomcat-8.5.23/webapps/dubbo-admin-2.8.4/WEB-INF
@@ -43,6 +45,31 @@ docker run --name jenkins -p 10080:8080 docker.io/jenkins/jenkins
 ## 代码修改
 
 需要对 redisService 做相关修改才能正常运行，原因是实现类(Impl) 中没有覆盖父类的方法
+
+
+## 配置 jenkins
+
+如果只安装了默认插件，需要在插件管理中添加 maven-release-plugin，安装好后，在 pre-step 中增加配置
+
+```bash
+# 目标
+clean install -Dmaven.test.skip=true
+# pom
+Gaoxi-Common-Service-Facade/pom.xml
+```  
+
+在 build 中增加配置
+
+```bash
+# Root POM
+Gaoxi-User/pom.xml
+# Goals and options
+clean install -Dmaven.test.skip=true -P test
+```  
+
+下载远程部署插件， 地址: https://wiki.jenkins.io/display/JENKINS/Deploy+Plugin , 其实就是 `Deploy to container`,我直接在插件市场通过搜索安装
+配置构建后执行的操作，上传 war 包到 tomcat，主要设置好 tomcat 登录的账号名/密码
+
 
 ## dubbo 配置
 
