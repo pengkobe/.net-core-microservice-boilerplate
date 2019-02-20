@@ -47,11 +47,51 @@ ln -s /data/mysql-data /usr/local/mysql/data
 chown -R mysql:mysql /data/mysql-data /usr/local/mysql/data
 cp support-files/mysql.server /etc/init.d/mysql
 # **如果/etc/目录下有my.cnf存在，需要把这个配置删除了**
+rm -f /etc/my.cnf
 yum install -y perl-Module-Install.noarch
 perl scripts/mysql_install_db --user=mysql
 vim /usr/local/mysql/my.cnf # 修改内容参考 附录中的 `my.cnf` 实例
 service mysql start
-# error: service mysql start
+# error: permission deny
+# chmod a+wrx /etc/init.d/mysql
+# service mysql start
+# # error: log-error set to '/var/log/mariadb/mariadb.log', however file don't exists. Create writable for user 'mysql
+# mkdir /var/log/mariadb 
+# touch /var/log/mariadb/mariadb.log 
+# chown -R mysql:mysql  /var/log/mariadb/
+# service mysql start
+# # error: mysqld_safe Directory '/temp' for UNIX socket file don't exists
+# mkdir /temp
+# chown -R mysql:mysql  /temp
+# service mysql start
+# # error: Starting MySQL.The server quit without updating PID file 
+chkconfig mysql on
+service mysql stop
+vim /etc/profile
+    PATH=$PATH:/usr/local/mysql/bin
+    export PATH
+# ./bin/mysqladmin -u root password 'root@passwd' # 默认基于 localhost
+./bin/mysqladmin -u root -h 172.19.244.31 password 'root@passwd'
+vim /etc/ld.so.conf
+    /usr/local/mysql/lib/
+    ldconfig
+# TODO: MYSQL 主从配置
+
+```
+
+## Tars框架运行环境搭建
+```bash
+cd /mnt
+wget https://github.com/TarsCloud/Tars/archive/master.zip
+cd /usr/local
+mkdir app
+cd app
+mkdir tars
+# TODO: chown ${普通用户}:${普通用户} ./tars/
+cd /mnt
+yum install unzip
+cd Tars-master/build
+# ERROR: make: *** No rule to make target `framework-tar'.  Stop
 
 ```
 
