@@ -70,14 +70,22 @@ service mysql stop
 vim /etc/profile
     PATH=$PATH:/usr/local/mysql/bin
     export PATH
+source /etc/profile
 # ./bin/mysqladmin -u root password 'root@passwd' # 默认基于 localhost
 ./bin/mysqladmin -u root -h 172.19.244.31 password 'root@passwd'
 vim /etc/ld.so.conf
     /usr/local/mysql/lib/
-    ldconfig
+ldconfig # 添加新的动态链接库时需要运行该命令
 # TODO: MYSQL 主从配置
+yum install -y flex bison
+
 
 ```
+
+## 数据库环境初始化
+```bash
+```
+
 
 ## Tars框架运行环境搭建
 ```bash
@@ -90,9 +98,13 @@ mkdir tars
 # TODO: chown ${普通用户}:${普通用户} ./tars/
 cd /mnt
 yum install unzip
+unzip master.zip
+rm -f master.zip
 cd Tars-master/build
 # ERROR: make: *** No rule to make target `framework-tar'.  Stop
-
+wget https://github.com/TarsCloud/TarsFramework/archive/master.zip
+unzip master.zip
+cd TarsFramework-master
 ```
 
 ## 附录
@@ -134,3 +146,4 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
 - https://github.com/TarsCloud/Tars/blob/master/Install.md 
   - 一键部署安装脚本: https://github.com/TarsCloud/Tars/tree/master/deploy 
+- TarsDocker https://github.com/TarsCloud/TarsDocker
