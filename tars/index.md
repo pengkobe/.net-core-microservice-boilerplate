@@ -201,8 +201,15 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
 ```
 
-## 参考
+## 疑问
 
+- rapidjson版本:	1.0.2版本（c++语言框架依赖）
+
+## 参考
+- 简介: https://github.com/TarsCloud/Tars/blob/master/Introduction.md 
 - https://github.com/TarsCloud/Tars/blob/master/Install.md 
-  - 一键部署安装脚本: https://github.com/TarsCloud/Tars/tree/master/deploy 
+  - 一键部署安装脚本: https://github.com/TarsCloud/Tars/blob/master/build/install.sh
+- 网友写的安装教程
+  - https://cloud.tencent.com/developer/article/1372998  
+  - https://github.com/maq128/temp/blob/master/kb/tars%E5%B0%8F%E7%99%BD%E5%AE%89%E8%A3%85%E5%BF%85%E6%88%90%E6%89%8B%E5%86%8C.md
 - TarsDocker https://github.com/TarsCloud/TarsDocker
