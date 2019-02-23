@@ -1,9 +1,14 @@
 # ERRORS
 
-排查方式
+Web 排查方式
 
 ```bash
 pm2 logs tars-node-web
+``` 
+服务运行详细日志位于
+
+```bash
+usr/local/app/tars/app_log
 ```
 
 ## table db_tars_web.t_patch_task' doesn't exist
