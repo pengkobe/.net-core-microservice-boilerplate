@@ -12,3 +12,4 @@
 ## 参考
 
 - 官网: https://github.com/tars-node/Tars.js
+- quick start: https://tars.tencent.com/base/help/TARS_quick_start_NodeJs.html 

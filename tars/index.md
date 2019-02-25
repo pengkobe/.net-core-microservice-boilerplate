@@ -209,14 +209,16 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
 ## 疑问
 
-- `rapidjson版本:	1.0.2版本（c++语言框架依赖）` 在哪里有用到呢？
+- `rapidjson版本: 1.0.2版本（c++语言框架依赖）` 在哪里有用到呢？
 
 ## 参考
 
 - 简介: https://github.com/TarsCloud/Tars/blob/master/Introduction.md 
-- https://github.com/TarsCloud/Tars/blob/master/Install.md 
-  - 一键部署安装脚本: https://github.com/TarsCloud/Tars/blob/master/build/install.sh
+- 官方安装教程 https://github.com/TarsCloud/Tars/blob/master/Install.md 
 - 网友写的安装教程
   - 基于云主机自动安装，系统是 ubuntu https://segmentfault.com/a/1190000017482106  ， https://cloud.tencent.com/developer/article/1372998  
   - 基于本地虚拟机上安装的 CentOS 进行搭建，对收到、自动、docker 方式安装做了比较全面的介绍 https://github.com/maq128/temp/blob/master/kb/tars%E5%B0%8F%E7%99%BD%E5%AE%89%E8%A3%85%E5%BF%85%E6%88%90%E6%89%8B%E5%86%8C.md
+- 阅文集团基于 TAF 的应用经验分享: https://segmentfault.com/a/1190000010152740
+- 一键部署安装脚本: https://github.com/TarsCloud/Tars/blob/master/build/install.sh
+- 网友写的安装教程
 - TarsDocker https://github.com/TarsCloud/TarsDocker
