@@ -5,15 +5,27 @@
 
 - [ ] 在 croncab 中配置核心基础框架的监控项
 - [ ] ARS 用户体系模块+资源模块使用 [参考](https://github.com/TarsCloud/TarsWeb/blob/master/docs/TARS%20%E7%94%A8%E6%88%B7%E4%BD%93%E7%B3%BB%E6%A8%A1%E5%9D%97%2B%E8%B5%84%E6%BA%90%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%8C%87%E5%BC%95.md)
-- [ ] 对服务器扩容进行实践
+- [x] 对服务器扩容进行实践
 - [ ] 基于 IDC 分组案例
 - [ ] 对应用配置、Set配置、服务配置和节点配置搭建案例
 - [ ] 框架服务分机器、多机器搭建实践
 - [ ] 基于 docker 部署, [参考](https://hub.docker.com/r/tarscloud/tars)
+  - [ ] tars 部署
+  - [ ] tars-node 部署
+  - [ ] tars Kubernetes  部署
 
 ## 环境要求
 
 个人用的是阿里云共享机，1核2G 觉得挺够用的，如果是 1 核 1 G 的话那么最好是在本地编译再上传。
+
+## 缺点
+
+- tars API鉴权还在完善，网关还没有
+- 一台服务器（物理机、虚拟机、云主机）不能部署同应用的同种 Server
+- 文档真的不行，pr 也合并不及时
+  - 对扩容的叙述基本没有
+  - 自开源后除了修了几个 bug 就没看到更细
+  - 各种小 bug，看了别人的安装文档才能解决
 
 ## 安装
 
@@ -207,6 +219,18 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
 
 ```
 
+## 扩容
+
+```bash
+
+sed -i "s/192.168.2.131/172.19.244.30/g" `grep 192.168.2.131 -rl ./*`
+sed -i "s/db.tars.com/172.19.244.31/g" `grep db.tars.com -rl ./*`
+sed -i "s/registry.tars.com/172.19.244.31/g" `grep registry.tars.com -rl ./*`
+sed -i "s/web.tars.com/172.19.244.31/g" `grep web.tars.com -rl ./*`
+chmod u+x tarsnode_install.sh
+./tarsnode_install.sh
+```
+
 ## 疑问
 
 - `rapidjson版本: 1.0.2版本（c++语言框架依赖）` 在哪里有用到呢？
@@ -220,5 +244,8 @@ sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
   - 基于本地虚拟机上安装的 CentOS 进行搭建，对收到、自动、docker 方式安装做了比较全面的介绍 https://github.com/maq128/temp/blob/master/kb/tars%E5%B0%8F%E7%99%BD%E5%AE%89%E8%A3%85%E5%BF%85%E6%88%90%E6%89%8B%E5%86%8C.md
 - 阅文集团基于 TAF 的应用经验分享: https://segmentfault.com/a/1190000010152740
 - 一键部署安装脚本: https://github.com/TarsCloud/Tars/blob/master/build/install.sh
-- 网友写的安装教程
-- TarsDocker https://github.com/TarsCloud/TarsDocker
+- TarsDocker 
+  - https://github.com/TarsCloud/TarsDocker
+  - https://hub.docker.com/r/tarscloud/tars
+- 网友经验
+  - Tars框架进阶 https://www.lanindex.com/tars%E6%A1%86%E6%9E%B6%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/
